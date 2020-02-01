@@ -19,7 +19,7 @@ public class JavaSpringIdeaExampleApplication {
     private static void openHomePage() {
         Runtime rt = Runtime.getRuntime();
         try {
-            rt.exec("rundll32 url.dll,FileProtocolHandler " + "http://localhost:8080"); //open a browser when spring boot finish setting up,
+            rt.exec("rundll32 url.dll,FileProtocolHandler " + "http://192.168.8.112:8080"); //open a browser when spring boot finish setting up,
             // this address can be change to suit your need
         } catch (IOException e) {
             e.printStackTrace();

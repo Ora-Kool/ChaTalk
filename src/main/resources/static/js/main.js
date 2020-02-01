@@ -12,7 +12,7 @@ let stompClient = null;
 let username = null;
 
 
-var colors = [
+let colors = [
     '#2196F3', '#32c787', '#00BCD4', '#ff5652',
     '#ffc107', '#ff85af', '#FF9800', '#39bbb0'
 ];
@@ -80,7 +80,7 @@ function onMessageReceived(payload) {
 
     if(message.type === 'JOIN'){
         messageElement.classList.add('event-message');
-        message.content = message.sender + " joined";
+        message.content = message.sender + " joined!";
     }else if(message.type === 'LEAVE'){
         messageElement.classList.add('event-message');
         message.content = message.sender + ' left!';
@@ -90,7 +90,7 @@ function onMessageReceived(payload) {
         let avatarElement = document.createElement('i');
         let avatarText = document.createTextNode(message.sender[0]);
         avatarElement.appendChild(avatarText);
-        avatarElement.style['background-color'] = getAvatarColor(message.sender);
+        avatarElement.style.backgroundColor = getAvatarColor(message.sender);
 
         messageElement.appendChild(avatarElement);
 
@@ -121,10 +121,11 @@ function onMessageReceived(payload) {
 function getAvatarColor(messageSender) {
     let hash = 0;
     for (let i = 0; i < messageSender.length; i++) {
-        hash = 31 * hash + messageSender.charAt(i);
+        hash = 31 * hash + messageSender.charCodeAt(i);
     }
 
     let index = Math.abs(hash % colors.length);
+
     return colors[index];
 }
 
